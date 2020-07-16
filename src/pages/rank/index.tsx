@@ -7,6 +7,7 @@ import { getRankList } from 'stores/actionCreaters/rank';
 import { filterIndex } from 'utils';
 import { useHistory } from 'react-router-dom';
 import { Album } from 'models';
+import MiniPlayerGasket from 'components/MiniPlayerGasket';
 interface ImgItemProps {
   album: Album;
   style?: React.CSSProperties;
@@ -107,6 +108,7 @@ const Rank = () => {
               })}
             </div>
           </div>
+          <MiniPlayerGasket />
         </div>
       </BScroll>
     </div>

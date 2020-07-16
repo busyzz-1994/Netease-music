@@ -31,6 +31,7 @@ import { getName } from 'utils';
 import api from 'api';
 import MusicNote, { MusicNoteProps } from 'components/MusicNote';
 import { Song } from 'models';
+import MiniPlayerGasket from 'components/MiniPlayerGasket';
 import { ReactComponent as Left } from 'assets/icon/left.svg';
 import { ReactComponent as CloseIcon } from 'assets/icon/close.svg';
 const noop = () => {};
@@ -203,6 +204,7 @@ const Search: FC<SearchProps> = () => {
         <div className={styles['search-content']}>
           {renderArtists()}
           {renderSongs()}
+          <MiniPlayerGasket />
         </div>
       </BScroll>
     );
