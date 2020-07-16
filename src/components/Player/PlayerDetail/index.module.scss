@@ -1,0 +1,233 @@
+@import '~styles/index.scss';
+
+.container {
+  @include fillBox();
+  position: fixed;
+  z-index: $player-detail-index;
+  background: $background-color;
+  display: none;
+
+  .background {
+    @include fillBox();
+    z-index: -2;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    filter: blur(20px);
+  }
+
+  .backgroundMask {
+    @include fillBox();
+    z-index: -1;
+    background: $background-mask-color;
+    opacity: 0.3;
+  }
+}
+
+//header
+.header {
+  display: flex;
+  height: 8%;
+  border-bottom: 1px solid rgba(228, 228, 228, 0.1);
+  align-items: center;
+
+  .iconWrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
+
+    .icon {
+      font-size: 26px;
+      padding: 0 10px;
+    }
+  }
+
+  .info {
+    @include ellipsis();
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+
+    .title {
+      color: $font-color;
+      font-size: $font-size-l;
+      margin-top: 4px;
+      @include ellipsis();
+    }
+
+    .subTitle {
+      font-size: $font-size-m;
+      color: $subtext-color;
+      margin-bottom: 4px;
+      @include ellipsis();
+    }
+  }
+}
+
+//content
+.content {
+  position: absolute;
+  top: 8%;
+  bottom: 170px;
+  width: 100%;
+  overflow: hidden;
+}
+
+//content-pic
+.content-pic {
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  height: 100%;
+
+  &-needle {
+    position: absolute;
+    top: -5vw;
+    height: 42vw;
+    left: 48vw;
+    width: 30vw;
+    background: url('~assets/images/needle.png') 50% 50% no-repeat;
+    background-size: 100% 100%;
+    z-index: 2;
+    transform: rotateZ(0);
+    transition: transform 300ms;
+    transform-origin: 4vw 4vw;
+
+    &.paused {
+      transform: rotateZ(-30deg);
+    }
+  }
+
+  &-disc {
+    position: absolute;
+    top: 16%;
+    width: 70vw;
+    height: 70vw;
+    background: url('~assets/images/disc.png') 50% 50% no-repeat;
+    background-size: 100% 100%;
+
+    >img {
+      width: 68%;
+      height: 68%;
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      margin: auto;
+      border-radius: 50%;
+      animation: img-rotate 20s linear infinite;
+
+      &.paused {
+        animation-play-state: paused;
+      }
+    }
+  }
+
+  &-lyric {
+    position: absolute;
+    top: 95vw;
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+    color: $white-color;
+  }
+}
+
+//content-lyric
+
+.content-lyric {
+  color: $white-color;
+}
+
+//handler
+.handler {
+  position: absolute;
+  width: 100%;
+  bottom: 50px;
+}
+
+//progress
+.progress {
+  display: flex;
+  flex: 1;
+  height: 30px;
+  margin: 0 6px;
+  align-items: center;
+
+
+  &-wrapper {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    color: $font-color;
+    font-size: $font-size-s;
+    padding: 10px 0;
+  }
+
+  &-bar {
+    height: 100%;
+    width: 100%;
+    position: relative;
+
+    &-bg {
+      position: absolute;
+      background: rgba(0, 0, 0, .3);
+      height: 4px;
+      width: 100%;
+      top: 13px;
+    }
+
+    &-mask {
+      @extend .progress-bar-bg;
+      width: 0px;
+      background: $theme-color;
+      z-index: 2;
+    }
+
+    &-dot {
+      position: absolute;
+      left: -15px;
+      height: 30px;
+      width: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+    }
+
+    &-btn {
+      width: 16px;
+      height: 16px;
+      background: $theme-color;
+      border: 3px solid $white-color-drak;
+      border-radius: 50%;
+    }
+  }
+}
+
+//btn-container
+.btn-container {
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+  justify-content: space-between;
+
+  >div {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  >div:first-child {
+    justify-content: flex-start;
+  }
+
+  >div:last-child {
+    justify-content: flex-end;
+  }
+}

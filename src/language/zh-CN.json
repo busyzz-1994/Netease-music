@@ -1,0 +1,25 @@
+{
+  "demo": {
+    "title": "Demo 标题 (来自语言文件)",
+    "heading": "Demo Heading (来自语言文件)",
+    "description": "Demo 描述 (来自语言文件)"
+  },
+  "module1": {
+    "property1": "value",
+    "property2": "value",
+    "property3": "value",
+    "property4": "value"
+  },
+  "module2": {
+    "property1": "value",
+    "property2": "value",
+    "property3": "value",
+    "property4": "value"
+  },
+  "module3": {
+    "property1": "value",
+    "property2": "value",
+    "property3": "value",
+    "property4": "value"
+  }
+}

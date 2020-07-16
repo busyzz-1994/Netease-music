@@ -1,0 +1,228 @@
+variables:
+  # 开发测试环境域名
+  AUTO_DEVOPS_DOMAIN: bdfint.cn
+  # 生产环境域名
+  AUTO_DEVOPS_DOMAIN_ALIYUN: zsteel.cc
+  # 不带标签的镜像仓库地址，用于推送镜像 （可以修改$CI_PROJECT_PATH_SLUG为你的项目名）
+  CI_REGISTRY_IMAGE: ${CI_REGISTRY}/fed/${CI_PROJECT_PATH_SLUG}
+  CI_REGISTRY_IMAGE_ALIYUN: ${CI_REGISTRY_ALIYUN}/bdfint/${CI_PROJECT_PATH_SLUG}
+
+  # 项目的域名名称前缀 *.stable-dev.bdfint.cn *.stable-test.bdfint.cn *.zsteel.cc
+  PROJECT_URL_PREFIX: react-boilerplate
+  # 项目组的英文名称（方便查看和调试等）
+  PROJECT_GROUP_NAME: fed
+
+  # 项目组/项目变量 (Settings -> CI/CD -> Variables)
+  # CI_REGISTRY 本地 docker 仓库
+  # CI_REGISTRY_USER
+  # CI_REGISTRY_PASSWORD
+  # CI_REGISTRY_ALIYUN 阿里云 docker 仓库
+  # CI_REGISTRY_USER_ALIYUN
+  # CI_REGISTRY_PASSWORD_ALIYUN
+  # CI_REGISTRY_TRIGGER_ALIYUN 项目阿里云发布触发地址 [项目唯一]
+
+image: modules/kubectl:docker
+
+stages:
+  - build
+  - review
+  - staging
+  - production
+  - cleanup
+
+build:
+  stage: build
+  variables:
+    DOCKER_DRIVER: overlay
+  image: docker:stable
+  script:
+    - build
+  only:
+    refs:
+      - branches
+
+# 预览 dev (只有 dev 分支可以发布 dev 环境，自动发布)
+review_dev:
+  stage: review
+  variables:
+    KUBE_NAMESPACE: dev-${PROJECT_GROUP_NAME}
+  script:
+    - export REPOSITORY="$CI_REGISTRY_IMAGE"
+    - deploy
+  environment:
+    name: dev
+    url: http://${PROJECT_URL_PREFIX}.stable-dev.${AUTO_DEVOPS_DOMAIN}
+    on_stop: stop_review_dev
+  artifacts:
+    paths:
+      - "*.yaml"
+  only:
+    refs:
+      - dev
+    kubernetes: active
+
+# 预览 test (每个分支都可以发布 test 环境，需手动发布)
+review_test:
+  stage: review
+  variables:
+    KUBE_NAMESPACE: test-${PROJECT_GROUP_NAME}
+  script:
+    - export REPOSITORY="$CI_REGISTRY_IMAGE"
+    - deploy
+  environment:
+    name: test
+    url: http://${PROJECT_URL_PREFIX}.stable-test.${AUTO_DEVOPS_DOMAIN}
+    on_stop: stop_review_test
+  artifacts:
+    paths:
+      - "*.yaml"
+  when: manual
+  only:
+    refs:
+      - branches
+    kubernetes: active
+
+# 停止预览 dev
+stop_review_dev:
+  stage: cleanup
+  variables:
+    GIT_STRATEGY: none
+    KUBE_NAMESPACE: dev-${PROJECT_GROUP_NAME}
+  script:
+    - delete
+  environment:
+    name: dev
+    action: stop
+  when: manual
+  allow_failure: true
+  only:
+    refs:
+      - dev
+    kubernetes: active
+
+# 停止预览 test
+stop_review_test:
+  stage: cleanup
+  variables:
+    GIT_STRATEGY: none
+    KUBE_NAMESPACE: test-${PROJECT_GROUP_NAME}
+  script:
+    - delete
+  environment:
+    name: test
+    action: stop
+  when: manual
+  allow_failure: true
+  only:
+    refs:
+      - branches
+    kubernetes: active
+
+# 阿里云灰度
+staging:
+  stage: staging
+  variables:
+    KUBE_NAMESPACE: $PROJECT_GROUP_NAME
+    KUBE_CONFIG: $KUBE_ALIYUN_STAGING
+  script:
+    # 推送镜像到阿里云
+    - docker_aliyun
+    - kubectl_aliyun
+    - export REPOSITORY="$CI_REGISTRY_IMAGE_ALIYUN"
+    - deploy
+  environment:
+    name: staging
+    url: https://${PROJECT_URL_PREFIX}.${AUTO_DEVOPS_DOMAIN_ALIYUN}
+  artifacts:
+    paths:
+      - "*.yaml"
+  when: manual
+  only:
+    refs:
+      - /^\d+\.\d+(\.\d+)?$/
+      - master
+    kubernetes: active
+
+# 阿里云生产
+production:
+  stage: production
+  variables:
+    KUBE_NAMESPACE: $PROJECT_GROUP_NAME
+    KUBE_CONFIG: $KUBE_ALIYUN_PROD
+  script:
+    - kubectl_aliyun
+    - export REPOSITORY="$CI_REGISTRY_IMAGE_ALIYUN"
+    - deploy
+  environment:
+    name: production
+    url: https://${PROJECT_URL_PREFIX}.${AUTO_DEVOPS_DOMAIN_ALIYUN}
+  artifacts:
+    paths:
+      - "*.yaml"
+  when: manual
+  only:
+    refs:
+      - /^\d+\.\d+(\.\d+)?$/
+      - master
+    kubernetes: active
+  dependencies:
+    - staging
+
+# ---------------------------------------------------------------------------
+
+.auto_devops: &auto_devops |
+  [[ "$TRACE" ]] && set -x
+  function build() {
+    if [[ -n "$CI_REGISTRY_USER" ]]; then
+      echo "Logging to GitLab Container Registry with CI credentials..."
+      docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
+    fi
+
+    if [[ -f Dockerfile ]]; then
+      docker build --build-arg CI_COMMIT_SHA=$CI_COMMIT_SHA -t $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA .
+      docker push $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+    fi
+  }
+  function deploy() {
+    kubectl describe namespace "$KUBE_NAMESPACE" || kubectl create namespace "$KUBE_NAMESPACE"
+    # 在当前命名空间中生成 secret
+    kubectl describe secret bdfint -n "$KUBE_NAMESPACE" || kubectl get secret bdfint -o yaml -n default | sed "s/default/${KUBE_NAMESPACE}/g" | kubectl -n "$KUBE_NAMESPACE" create -f -
+
+    INGRESS_HOST="${CI_ENVIRONMENT_URL/http*:\/\//}"
+    INGRESS_HOST="${INGRESS_HOST%%/*}"
+
+    helm template helm \
+      --namespace="$KUBE_NAMESPACE" \
+      --name="$CI_PROJECT_PATH_SLUG-$CI_ENVIRONMENT_SLUG" \
+      --set image.repository="$REPOSITORY" \
+      --set image.tag="$CI_COMMIT_SHA" \
+      --set ingress.hosts[0]="$INGRESS_HOST" \
+      > deployment.yaml
+    cat deployment.yaml
+    kubectl apply --namespace=$KUBE_NAMESPACE -f deployment.yaml
+  }
+  function delete() {
+    echo "准备删除旧的部署..."
+    kubectl delete --namespace=$KUBE_NAMESPACE -f deployment.yaml
+  }
+  function docker_aliyun() {
+    if [[ -n "$CI_REGISTRY_USER" ]]; then
+      echo "Logging to GitLab Container Registry $CI_REGISTRY with CI credentials..."
+      docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" "$CI_REGISTRY"
+    fi
+    if [[ -n "$CI_REGISTRY_USER_ALIYUN" ]]; then
+      echo "Logging to GitLab Container Registry $CI_REGISTRY_ALIYUN with CI credentials..."
+      docker login -u "$CI_REGISTRY_USER_ALIYUN" -p "$CI_REGISTRY_PASSWORD_ALIYUN" "$CI_REGISTRY_ALIYUN"
+    fi
+
+    docker pull $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA
+    # 推送镜像到阿里云
+    docker tag $CI_REGISTRY_IMAGE:$CI_COMMIT_SHA $CI_REGISTRY_IMAGE_ALIYUN:$CI_COMMIT_SHA
+    docker push $CI_REGISTRY_IMAGE_ALIYUN:$CI_COMMIT_SHA
+  }
+  function kubectl_aliyun() {
+    echo -n $KUBE_CONFIG | base64 -d > $KUBECONFIG
+  }
+
+before_script:
+  - *auto_devops

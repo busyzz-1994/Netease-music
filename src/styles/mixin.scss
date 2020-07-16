@@ -1,0 +1,21 @@
+@import './var.scss';
+
+@mixin titleFontStyle {
+  color: $font-title-color;
+  font-size: $font-size-m;
+  font-weight: 700;
+}
+
+@mixin ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin fillBox($position:absolute) {
+  position: $position;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}

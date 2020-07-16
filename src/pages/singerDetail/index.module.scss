@@ -1,0 +1,54 @@
+@import '~styles/index.scss';
+
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: $album-page-index;
+  transform-origin: right bottom;
+  background: $background-color;
+}
+
+.img-wrapper {
+  width: 100%;
+  padding-top: 75%;
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  transform-origin: center top;
+
+  .img-filter {
+    @include fillBox();
+    background: rgba(7, 17, 27, 0.3);
+  }
+
+
+}
+
+.collect-button {
+  position: fixed;
+  top: -100000px;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+  width: 120px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 20px;
+  text-align: center;
+  color: $white-color;
+  background: $theme-color;
+  z-index: 999;
+}
+
+.songList-wrapper {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+
+  >div {
+    overflow: visible;
+  }
+}

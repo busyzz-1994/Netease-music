@@ -1,0 +1,30 @@
+$title-height:50px;
+//size
+$font-size-xs:10px;
+$font-size-s:12px;
+$font-size-m:14px;
+$font-size-l:16px;
+$font-size-xl:18px;
+$font-size-xxl:20px;
+$title-size:$font-size-xxl;
+$font-size-icon:32px;
+$font-size-icon-normal:22px;
+//color
+$theme-color:#d44439;
+$theme-color-shadow:rgba(212, 68, 57, .5);
+$white-color:#f1f1f1;
+$white-color-drak:#e4e4e4;
+$font-color:#2E3030;
+$font-title-color:#000;
+$background-color:#f5f5f5;
+$subtext-color:#bba8a8;
+$background-mask-color:$font-color;
+$border-color:$white-color-drak;
+$bg-background-color:rgba(0, 0, 0, 0.3);
+//z-index
+$album-page-index:10;
+$search-page-index:11;
+$music-icon-index:99;
+$player-index:199;
+$player-detail-index:200;
+$player-list:201;

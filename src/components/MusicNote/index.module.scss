@@ -1,0 +1,18 @@
+@import '~styles/var.scss';
+
+.music-box {
+  position: fixed;
+  z-index: $music-icon-index;
+  top: 0;
+  left: 0;
+  margin-top: -10px;
+  margin-left: -10px;
+  display: none;
+  transform: translate3d(0, 0, 0);
+  transition: transform 1s cubic-bezier(.59, -0.1, .83, .67);
+
+  >div {
+    transform: translate3d(0, 0, 0);
+    transition: transform 1s;
+  }
+}

@@ -1,0 +1,78 @@
+@import '~styles/var.scss';
+@import '~styles/mixin.scss';
+
+.container {
+  font-size: $font-size-l;
+  color: $font-color;
+  background: #ffffff;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  overflow: hidden;
+}
+
+.play-all {
+  display: flex;
+  height: 47px;
+  padding: 10px 0;
+  margin-left: 10px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid $border-color;
+
+  .player {
+    display: flex;
+    align-items: center;
+
+    >div:first-of-type {
+      margin: 0 4px;
+    }
+  }
+}
+
+.subtext {
+  font-size: $font-size-s;
+  color: $subtext-color;
+}
+
+.collect {
+  width: 130px;
+  height: 47px;
+  background: $theme-color;
+  font-size: $font-size-m;
+  display: flex;
+  align-items: center;
+  color: $white-color;
+
+  .icon {
+    width: 24px;
+    margin-left: 10px;
+    margin-right: 4px;
+  }
+}
+
+//item
+.item {
+  display: flex;
+
+  &-index {
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+  }
+
+  &-info {
+    flex: 1;
+    height: 60px;
+    padding: 5px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    border-bottom: 1px solid $border-color;
+    @include ellipsis();
+
+    >div {
+      @include ellipsis();
+    }
+  }
+}

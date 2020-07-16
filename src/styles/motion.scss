@@ -1,0 +1,123 @@
+//旋转动画
+.rotate-enter,
+.rotate-appear {
+  transform: rotateZ(30deg) translate3d(100%, 0, 0);
+}
+
+.rotate-enter-active,
+.rotate-appear-active {
+  transform: rotateZ(0deg) translate3d(0, 0, 0);
+  transition: all 300ms;
+}
+
+.rotate-exit {
+  transform: rotateZ(0deg) translate3d(0, 0, 0);
+}
+
+.rotate-exit-active {
+  transform: rotateZ(30deg) translate3d(100%, 0, 0);
+  transition: all 300ms;
+}
+
+//底部播放器
+.mini-player-enter,
+.mini-player-appear {
+  transform: translate3d(0, 100%, 0);
+  opacity: 0;
+}
+
+.mini-player-enter-active,
+.mini-player-appear-active {
+  transition: all 300ms;
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.mini-player-exit {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.mini-player-exit-active {
+  transform: translate3d(0, 100%, 0);
+  opacity: 0;
+  transition: all 300ms;
+}
+
+//播放列表
+.playerList-fade-enter,
+.playerList-fade-appear {
+  opacity: 0;
+}
+
+.playerList-fade-enter-active,
+.playerList-fade-appear-active {
+  opacity: 1;
+  transition: all 300ms;
+
+  .confirm-zoom {
+    animation: confirm-zoom 0.3s;
+  }
+
+}
+
+.playerList-fade-exit {
+  opacity: 1;
+}
+
+.playerList-fade-exit-active {
+  opacity: 0;
+  transition: all 300ms;
+}
+
+
+//搜索页动画
+.search-slide-enter,
+.search-slide-appear {
+  transform: translate3d(100%, 0, 0);
+  opacity: 0;
+}
+
+.search-slide-enter-active,
+.search-slide-appear-active {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  transition: all 300ms;
+}
+
+.search-slide-exit {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+}
+
+.search-slide-exit-active {
+  transform: translate3d(100%, 0, 0);
+  opacity: 0;
+  transition: all 300ms;
+
+}
+
+@keyframes confirm-zoom {
+  0% {
+    transform: scale(0);
+
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes img-rotate {
+  0% {
+    transform: rotateZ(0);
+  }
+
+  100% {
+    transform: rotateZ(360deg);
+  }
+}

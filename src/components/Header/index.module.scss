@@ -1,0 +1,24 @@
+@import '~styles/var.scss';
+
+.container {
+  font-size: $font-size-l;
+  color: $white-color;
+  height: 40px;
+  line-height: 40px;
+  padding: 5px 10px;
+  padding-top: 0;
+  padding-right: 0;
+  box-sizing: content-box;
+  position: fixed;
+  width: 100%;
+  z-index: 99;
+}
+
+.back {
+  display: flex;
+  align-items: center;
+
+  .backIcon {
+    font-size: 30px;
+  }
+}

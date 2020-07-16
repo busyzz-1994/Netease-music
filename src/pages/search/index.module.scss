@@ -1,0 +1,149 @@
+@import '~styles/index.scss';
+
+.container {
+  @include fillBox(fixed);
+  z-index: $search-page-index;
+  background: $background-color;
+
+  .content {
+    position: absolute;
+    top: 45px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+  }
+}
+
+//search搜索栏
+.search {
+  font-size: $font-size-l;
+  color: $white-color;
+  height: 40px;
+  line-height: 40px;
+  padding: 5px 10px;
+  padding-top: 0;
+  padding-right: 0;
+  box-sizing: content-box;
+  position: fixed;
+  width: 100%;
+  z-index: 111;
+  background: $theme-color;
+  display: flex;
+  align-items: center;
+
+  &-back {
+    &-icon {
+      font-size: 30px;
+    }
+  }
+
+  &-box {
+    width: 80%;
+    border-bottom: 1px solid $white-color;
+
+    input {
+      background: transparent;
+      border: none;
+      outline: none;
+      outline-style: none;
+      display: block;
+      height: 100%;
+      padding-bottom: 5px;
+      font-size: $font-size-m;
+      color: $white-color;
+      margin-top: 5px;
+      width: 100%;
+
+      &::placeholder {
+        color: $white-color;
+      }
+    }
+  }
+
+  &-icon {
+    margin-left: 10px;
+
+    &-btn {
+      font-size: 24px;
+    }
+  }
+}
+
+//热门搜索
+.hot {
+  padding: 50px 20px;
+  font-size: $font-size-m;
+
+  &-title {
+    color: $subtext-color;
+    margin-bottom: 20px;
+  }
+
+  &-list {
+    color: $font-color;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &-item {
+    padding: 5px;
+    border-radius: 3px;
+    margin-right: 20px;
+    background: #fff;
+    margin-bottom: 10px;
+  }
+}
+
+//搜索出来的内容
+.search-content {
+  padding: 10px 5px;
+
+  .artists {
+    &-title {
+      font-size: 12px;
+      color: $font-color;
+      margin-bottom: 5px;
+    }
+
+    &-info {
+      display: flex;
+      padding: 5px 0;
+      align-items: center;
+      border-bottom: 1px solid $border-color;
+    }
+
+    &-img {
+      width: 50px;
+      height: 50px;
+
+      >img {
+        height: 100%;
+        width: 100%;
+        border-radius: 50%;
+      }
+    }
+
+    &-text {
+      margin-left: 20px;
+    }
+  }
+
+  .songs {
+    &-item {
+      padding: 5px 0;
+      margin: 0 8px;
+      color: $font-color;
+      font-size: $font-size-m;
+      border-bottom: 1px solid $border-color;
+
+      &-name {
+        margin-bottom: 8px;
+      }
+
+      &-sub {
+        font-size: $font-size-s;
+        color: $subtext-color;
+      }
+    }
+  }
+}

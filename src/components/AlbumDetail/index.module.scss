@@ -1,0 +1,116 @@
+@import '~styles/var.scss';
+
+.container {}
+
+.info {
+  width: 100%;
+  height: 275px;
+  position: relative;
+  box-sizing: border-box;
+  padding: 5px 20px;
+  padding-bottom: 50px;
+  display: flex;
+  align-items: center;
+
+  .background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+    filter: blur(20px);
+    z-index: -1;
+
+    >div {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(7, 17, 27, 0.2);
+    }
+  }
+
+  .info-wrapper {
+    display: flex;
+
+    .img-wrapper {
+      position: relative;
+      border-radius: 4px;
+      overflow: hidden;
+      width: 120px;
+      height: 120px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .play-count {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        font-size: $font-size-s;
+        color: $white-color
+      }
+    }
+
+    .desc-wrapper {
+      margin-left: 6px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+      >div:first-child {
+        font-weight: 700;
+        color: $white-color;
+        font-size: $font-size-l;
+        line-height: 1.5;
+      }
+
+      .person {
+
+        img {
+          width: 20px;
+          height: 20px;
+          border-radius: 10px;
+          display: inline-block;
+          vertical-align: middle;
+        }
+
+        span {
+          color: $white-color-drak;
+          margin-left: 4px;
+          vertical-align: middle;
+          font-size: $font-size-m;
+        }
+      }
+    }
+  }
+
+  .handle {
+    display: flex;
+    position: absolute;
+    left: 0;
+    bottom: 36px;
+    width: 100%;
+    color: $white-color;
+
+    &-item {
+      flex: 1;
+
+      >div {
+        text-align: center;
+        font-size: $font-size-s;
+      }
+    }
+
+    &-icon {
+      font-size: $font-size-icon-normal;
+    }
+  }
+}

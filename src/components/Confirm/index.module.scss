@@ -1,0 +1,47 @@
+@import '~styles/index.scss';
+
+.background {
+  @include fillBox(fixed);
+  background: $bg-background-color;
+  display: none;
+
+  >div {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+  }
+}
+
+.confirm {
+
+  width: 270px;
+  background: $white-color;
+  border-radius: 13px;
+
+  .content {
+    padding: 19px 15px;
+    line-height: 22px;
+    text-align: center;
+    font-size: 16px;
+    color: #bba8a8;
+  }
+
+  .handle {
+    display: flex;
+  }
+
+  .handle>div {
+    flex: 1;
+    line-height: 22px;
+    padding: 10px 0;
+    border-top: 1px solid $white-color-drak;
+    color: $font-color;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .handle>div:first-child {
+    border-right: 1px solid $white-color-drak;
+  }
+}
