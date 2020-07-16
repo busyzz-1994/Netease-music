@@ -5,8 +5,10 @@
  */
 import { stringify } from 'qs';
 // const baseUrl = 'http://172.182.10.109:3300';
-const baseUrl = 'http://localhost:3300';
-
+let baseUrl = 'http://192.168.1.6:3300';
+if (process.env.NODE_ENV === 'production') {
+  baseUrl = 'http://47.105.201.71/:3300';
+}
 //@ts-ignore
 const noop = (_) => _;
 
