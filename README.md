@@ -1,62 +1,25 @@
-# react-boilerplate
-
-大数金科项目前端初始化模版
+<!--
+ * @Author: busyzz
+ * @Date: 2020-03-04 11:25:00
+ * @Description:
+-->
 
 ## 用法
 
 ```shell
-git clone git@gitlab.bdfint.com:fed/templates/react-boilerplate.git --depth=1
-cd react-boilerplate
 yarn install
-yarn start # 打开浏览器访问 http://localhost:3000
-```
-
-| 环境       | 地址                                            | 发布规则              |
-| ---------- | ----------------------------------------------- | --------------------- |
-| dev        | http://react-boilerplate.stable-dev.bdfint.cn/  | `dev` 分支自动发布    |
-| test       | http://react-boilerplate.stable-test.bdfint.cn/ | `master` 分支自动发布 |
-| production | https://react-boilerplate.zsteel.cc/            | **手动发布**          |
-
-## 说明
-
-## 包含功能
-
-- mobx
-- react-router
-- typescript
-- http-proxy-middleware
-- sass
-- css-module
-- jest
-
-### 浏览器支持
-
-IE 9+
-
-### 运行
-
-dev
-
-```sh
 yarn start
 ```
 
-单元测试（Unit Test）
+## 包含功能
 
-```sh
-yarn test
-```
-
-集成测试（Integration Test）
-
-这部分测试代码可以考虑适当交给测试人员编写，需要学习
-[expect-puppeteer](https://github.com/smooth-code/jest-puppeteer/blob/master/packages/expect-puppeteer/README.md#api)
-或
-[puppeteer page](https://pptr.dev/#?product=Puppeteer&version=master&show=api-class-page)
-
-```sh
-yarn test:integration
-```
+- redux
+- immer
+- react-router
+- react-hooks
+- typescript
+- sass
+- css-module
 
 ### 开发设置
 
@@ -70,10 +33,8 @@ Project
 |   .editorconfig
 |   .env // 项目环境变量
 |   .gitignore
-|   .gitlab-ci.yml // gitlab-ci 配置
 |   .prettierrc
 |   Dockerfile // Docker 构建配置
-|   nginx.conf // 项目运行 Nginx 配置（Dockerfile 会用到）
 |   package.json
 |   README.md
 |   tsconfig.extends.json
@@ -110,11 +71,8 @@ Project
     |       user.ts
     |
     +---components // 通用组件
-    |   |   Iconfont.tsx
-    |   |   Image.tsx
-    |   |
-    |   \---Container
-    |           index.tsx
+    |
+    |
     |
     +---language // 多语言支持（备用）
     |       index.ts
@@ -144,24 +102,3 @@ Project
             localStorage.js
             request.ts
 ```
-
-### 已知问题
-
-- `ESLint` 对 `TypeScript` 语法支持不完善 `keyof` 会报错
-
-```js
-Exclude<keyof FormProps, 'onReset' | 'onSubmit'>
-```
-
-- 一些库和功能在使用 `TypeScript` 时出现类型冲突，如 `@withRouter`
-
-- node-sass 依赖环境
-
-<https://github.com/sass/node-sass/releases>
-
-| NodeJS  | Minimum node-sass version | Node Module |
-| ------- | ------------------------- | ----------- |
-| Node 12 | 4.12+                     | 72          |
-| Node 11 | 4.10+                     | 67          |
-| Node 10 | 4.9+                      | 64          |
-| Node 8  | 4.5.3+                    | 57          |
