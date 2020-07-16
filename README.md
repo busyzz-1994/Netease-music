@@ -7,7 +7,14 @@
 ## 用法
 
 ```shell
+git clone git@github.com:540548050/blog-music.git
 yarn install
+//下载子模块
+git submodule update --init --recursive
+cd NeteaseCloudMusicApi
+yarn install
+//退出到根目录
+cd ../
 yarn start
 ```
 
