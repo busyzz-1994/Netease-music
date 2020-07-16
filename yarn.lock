@@ -2817,6 +2817,21 @@ concat-stream@^1.4.7, concat-stream@^1.5.0:
     readable-stream "^2.2.2"
     typedarray "^0.0.6"
 
+concurrently@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.npm.taobao.org/concurrently/download/concurrently-5.2.0.tgz#ead55121d08a0fc817085584c123cedec2e08975"
+  integrity sha1-6tVRIdCKD8gXCFWEwSPO3sLgiXU=
+  dependencies:
+    chalk "^2.4.2"
+    date-fns "^2.0.1"
+    lodash "^4.17.15"
+    read-pkg "^4.0.1"
+    rxjs "^6.5.2"
+    spawn-command "^0.0.2-1"
+    supports-color "^6.1.0"
+    tree-kill "^1.2.2"
+    yargs "^13.3.0"
+
 confusing-browser-globals@^1.0.7:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/confusing-browser-globals/-/confusing-browser-globals-1.0.7.tgz#5ae852bd541a910e7ffb2dbb864a2d21a36ad29b"
@@ -2980,13 +2995,12 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-cross-env@^5.2.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/cross-env/-/cross-env-5.2.0.tgz#6ecd4c015d5773e614039ee529076669b9d126f2"
-  integrity sha512-jtdNFfFW1hB7sMhr/H6rW1Z45LFqyI431m3qU6bFXcQ3Eh7LtBuG3h74o7ohHZ3crrRkkqHlo4jYHFPcjroANg==
+cross-env@^7.0.2:
+  version "7.0.2"
+  resolved "https://registry.npm.taobao.org/cross-env/download/cross-env-7.0.2.tgz#bd5ed31339a93a3418ac4f3ca9ca3403082ae5f9"
+  integrity sha1-vV7TEzmpOjQYrE88qco0Awgq5fk=
   dependencies:
-    cross-spawn "^6.0.5"
-    is-windows "^1.0.0"
+    cross-spawn "^7.0.1"
 
 cross-spawn@6.0.5, cross-spawn@^6.0.0, cross-spawn@^6.0.5:
   version "6.0.5"
@@ -3015,6 +3029,15 @@ cross-spawn@^5.0.1:
     lru-cache "^4.0.1"
     shebang-command "^1.2.0"
     which "^1.2.9"
+
+cross-spawn@^7.0.1:
+  version "7.0.3"
+  resolved "https://registry.npm.taobao.org/cross-spawn/download/cross-spawn-7.0.3.tgz?cache=0&sync_timestamp=1590421014780&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcross-spawn%2Fdownload%2Fcross-spawn-7.0.3.tgz#f73a85b9d5d41d045551c177e2882d4ac85728a6"
+  integrity sha1-9zqFudXUHQRVUcF34ogtSshXKKY=
+  dependencies:
+    path-key "^3.1.0"
+    shebang-command "^2.0.0"
+    which "^2.0.1"
 
 crypto-browserify@^3.11.0:
   version "3.12.0"
@@ -3298,6 +3321,11 @@ date-fns@^1.30.1:
   version "1.30.1"
   resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.30.1.tgz#2e71bf0b119153dbb4cc4e88d9ea5acfb50dc05c"
   integrity sha512-hBSVCvSmWC+QypYObzwGOd9wqdDpOt+0wl0KbU+R+uuZBS1jN8VsD1ss3irQDknRj5NvxiTF6oj/nDRnN/UQNw==
+
+date-fns@^2.0.1:
+  version "2.14.0"
+  resolved "https://registry.npm.taobao.org/date-fns/download/date-fns-2.14.0.tgz?cache=0&sync_timestamp=1589822564187&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fdate-fns%2Fdownload%2Fdate-fns-2.14.0.tgz#359a87a265bb34ef2e38f93ecf63ac453f9bc7ba"
+  integrity sha1-NZqHomW7NO8uOPk+z2OsRT+bx7o=
 
 date-now@^0.1.4:
   version "0.1.4"
@@ -5569,7 +5597,7 @@ is-windows@^0.2.0:
   resolved "https://registry.yarnpkg.com/is-windows/-/is-windows-0.2.0.tgz#de1aa6d63ea29dd248737b69f1ff8b8002d2108c"
   integrity sha1-3hqm1j6indJIc3tp8f+LgALSEIw=
 
-is-windows@^1.0.0, is-windows@^1.0.2:
+is-windows@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/is-windows/-/is-windows-1.0.2.tgz#d1850eb9791ecd18e6182ce12a30f396634bb19d"
   integrity sha512-eXK1UInq2bPmjyX6e3VHIzMLobc4J94i4AWn+Hpq3OU5KkrRC96OAcR3PRJ/pGu6m8TRnBHP9dkXQVsT/COVIA==
@@ -7528,6 +7556,11 @@ path-key@^2.0.0, path-key@^2.0.1:
   resolved "https://registry.yarnpkg.com/path-key/-/path-key-2.0.1.tgz#411cadb574c5a140d3a4b1910d40d80cc9f40b40"
   integrity sha1-QRyttXTFoUDTpLGRDUDYDMn0C0A=
 
+path-key@^3.1.0:
+  version "3.1.1"
+  resolved "https://registry.npm.taobao.org/path-key/download/path-key-3.1.1.tgz?cache=0&sync_timestamp=1574445307008&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fpath-key%2Fdownload%2Fpath-key-3.1.1.tgz#581f6ade658cbba65a0d3380de7753295054f375"
+  integrity sha1-WB9q3mWMu6ZaDTOA3ndTKVBU83U=
+
 path-parse@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.6.tgz#d62dbb5679405d72c4737ec58600e9ddcf06d24c"
@@ -8870,6 +8903,15 @@ read-pkg@^3.0.0:
     normalize-package-data "^2.3.2"
     path-type "^3.0.0"
 
+read-pkg@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.npm.taobao.org/read-pkg/download/read-pkg-4.0.1.tgz#963625378f3e1c4d48c85872b5a6ec7d5d093237"
+  integrity sha1-ljYlN48+HE1IyFhytabsfV0JMjc=
+  dependencies:
+    normalize-package-data "^2.3.2"
+    parse-json "^4.0.0"
+    pify "^3.0.0"
+
 "readable-stream@1 || 2", readable-stream@^2.0.0, readable-stream@^2.0.1, readable-stream@^2.0.2, readable-stream@^2.0.6, readable-stream@^2.1.5, readable-stream@^2.2.2, readable-stream@^2.3.3, readable-stream@^2.3.6, readable-stream@~2.3.6:
   version "2.3.6"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.3.6.tgz#b11c27d88b8ff1fbe070643cf94b0c79ae1b0aaf"
@@ -9275,6 +9317,13 @@ rxjs@^6.4.0:
   dependencies:
     tslib "^1.9.0"
 
+rxjs@^6.5.2:
+  version "6.6.0"
+  resolved "https://registry.npm.taobao.org/rxjs/download/rxjs-6.6.0.tgz#af2901eedf02e3a83ffa7f886240ff9018bbec84"
+  integrity sha1-rykB7t8C46g/+n+IYkD/kBi77IQ=
+  dependencies:
+    tslib "^1.9.0"
+
 safe-buffer@5.1.2, safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.1, safe-buffer@^5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
@@ -9524,10 +9573,22 @@ shebang-command@^1.2.0:
   dependencies:
     shebang-regex "^1.0.0"
 
+shebang-command@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npm.taobao.org/shebang-command/download/shebang-command-2.0.0.tgz#ccd0af4f8835fbdc265b82461aaf0c36663f34ea"
+  integrity sha1-zNCvT4g1+9wmW4JGGq8MNmY/NOo=
+  dependencies:
+    shebang-regex "^3.0.0"
+
 shebang-regex@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/shebang-regex/-/shebang-regex-1.0.0.tgz#da42f49740c0b42db2ca9728571cb190c98efea3"
   integrity sha1-2kL0l0DAtC2yypcoVxyxkMmO/qM=
+
+shebang-regex@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npm.taobao.org/shebang-regex/download/shebang-regex-3.0.0.tgz#ae16f1644d873ecad843b0307b143362d4c42172"
+  integrity sha1-rhbxZE2HPsrYQ7AwexQzYtTEIXI=
 
 shell-quote@1.6.1:
   version "1.6.1"
@@ -9680,6 +9741,11 @@ space-separated-tokens@^1.0.0:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/space-separated-tokens/-/space-separated-tokens-1.1.4.tgz#27910835ae00d0adfcdbd0ad7e611fb9544351fa"
   integrity sha512-UyhMSmeIqZrQn2UdjYpxEkwY9JUrn8pP+7L4f91zRzOQuI8MF1FGLfYU9DKCYeLdo7LXMxwrX5zKFy7eeeVHuA==
+
+spawn-command@^0.0.2-1:
+  version "0.0.2-1"
+  resolved "https://registry.npm.taobao.org/spawn-command/download/spawn-command-0.0.2-1.tgz#62f5e9466981c1b796dc5929937e11c9c6921bd0"
+  integrity sha1-YvXpRmmBwbeW3Fkpk34RycaSG9A=
 
 spawn-sync@^1.0.15:
   version "1.0.15"
@@ -10295,6 +10361,11 @@ tree-kill@^1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/tree-kill/-/tree-kill-1.2.1.tgz#5398f374e2f292b9dcc7b2e71e30a5c3bb6c743a"
   integrity sha512-4hjqbObwlh2dLyW4tcz0Ymw0ggoaVDMveUB9w8kFSQScdRLo0gxO9J7WFcUBo+W3C1TLdFIEwNOWebgZZ0RH9Q==
+
+tree-kill@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.npm.taobao.org/tree-kill/download/tree-kill-1.2.2.tgz?cache=0&sync_timestamp=1576090178663&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ftree-kill%2Fdownload%2Ftree-kill-1.2.2.tgz#4ca09a9092c88b73a7cdc5e8a01b507b0790a0cc"
+  integrity sha1-TKCakJLIi3OnzcXooBtQeweQoMw=
 
 trim-newlines@^1.0.0:
   version "1.0.0"
@@ -10913,6 +10984,13 @@ which@1.2.x:
   dependencies:
     isexe "^2.0.0"
 
+which@^2.0.1:
+  version "2.0.2"
+  resolved "https://registry.npm.taobao.org/which/download/which-2.0.2.tgz?cache=0&sync_timestamp=1574116898193&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fwhich%2Fdownload%2Fwhich-2.0.2.tgz#7c6a8dd0a636a0327e10b59c9286eee93f3f51b1"
+  integrity sha1-fGqN0KY2oDJ+ELWckobu6T8/UbE=
+  dependencies:
+    isexe "^2.0.0"
+
 wide-align@^1.1.0:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/wide-align/-/wide-align-1.1.3.tgz#ae074e6bdc0c14a431e804e624549c633b000457"
@@ -11248,7 +11326,7 @@ yargs@^12.0.2:
     y18n "^3.2.1 || ^4.0.0"
     yargs-parser "^11.1.1"
 
-yargs@^13.3.2:
+yargs@^13.3.0, yargs@^13.3.2:
   version "13.3.2"
   resolved "https://registry.npm.taobao.org/yargs/download/yargs-13.3.2.tgz?cache=0&sync_timestamp=1590131229566&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fyargs%2Fdownload%2Fyargs-13.3.2.tgz#ad7ffefec1aa59565ac915f82dccb38a9c31a2dd"
   integrity sha1-rX/+/sGqWVZayRX4Lcyzipwxot0=
