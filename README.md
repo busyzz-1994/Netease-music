@@ -4,7 +4,7 @@
  * @Description:
 -->
 
-## 用法
+## 安装/启动
 
 ```shell
 git clone git@github.com:540548050/blog-music.git
@@ -30,11 +30,6 @@ yarn start
 - typescript
 - sass
 - css-module
-
-### 开发设置
-
-- `setupProxy.js` 修改后端代理
-- 运行时修改后端 `apiServer` http://localhost:3000//settings?apiServer=https://api.bdfint.cn
 
 ### 项目结构
 
