@@ -4,7 +4,7 @@ FROM node:alpine as builder
 WORKDIR /usr/src/app
 ENV PATH ./node_modules/.bin:$PATH
 COPY . .
-RUN yarn install
+RUN npm install --unsafe-perm
 RUN yarn build
 
 # production environment
