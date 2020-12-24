@@ -34,11 +34,10 @@
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "swiper": "^5.4.1",
-    "typescript": "^3.4.5"
+    "typescript": "^3.4.5",
+    "better-scroll": "^1.15.2"
   },
   "devDependencies": {
-    "better-scroll": "^1.15.2",
-    "jest-puppeteer": "^4.0.0"
   },
   "scripts": {
     "iconfont": "node scripts/iconfont.js",
