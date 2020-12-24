@@ -1,8 +1,13 @@
+/*
+ * @Author: busyzz
+ * @Date: 2020-03-04 11:25:00
+ * @Description: 
+ */
 ////////////////////////////////////////////////////////////////////////////////
 // 入口文件
 // 为了保证 import 顺序不被 prettier 干扰，使用 ./startup 来启动项目
 ////////////////////////////////////////////////////////////////////////////////
 
-import 'core-js/es6/weak-map'; // mobx
+// import 'core-js/es6/weak-map'; // mobx
 import 'react-app-polyfill/ie9';
 import './startup';
