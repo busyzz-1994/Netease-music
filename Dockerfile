@@ -1,10 +1,10 @@
 # build environment
-FROM node:alpine as builder
+FROM node:12.18.2-alpine as builder
 
 WORKDIR /usr/src/app
 ENV PATH ./node_modules/.bin:$PATH
 COPY . .
-RUN npm install --unsafe-perm
+RUN yarn install
 RUN yarn build
 
 # production environment
