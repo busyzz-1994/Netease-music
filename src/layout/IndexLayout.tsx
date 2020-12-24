@@ -15,7 +15,7 @@ export default (props) => {
         <span className={styles.icon}>
           <Menu />
         </span>
-        <span>云音乐-busyzzsss</span>
+        <span>云音乐-busyzzpp</span>
         <span className={styles.icon}>
           <Search onClick={() => history.push('/search')} />
         </span>
