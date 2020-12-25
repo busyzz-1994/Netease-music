@@ -8,7 +8,7 @@ RUN yarn install
 RUN yarn build
 
 # production environment
-FROM nginx
+FROM nginx:stable
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /usr/src/app/build /usr/share/nginx/html
